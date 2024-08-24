@@ -74,7 +74,16 @@ sudo systemctl daemon-reload
 sudo systemctl start node_exporter
 sudo systemctl enable node_exporter
 
-# 설치 확인
+
+# 전체 포트 오픈 (어쩌피 vnc에서 포트를 열고 닫음)
+sudo iptables -P INPUT ACCEPT
+sudo iptables -P OUTPUT ACCEPT
+sudo iptables -P FORWARD ACCEPT
+sudo iptables -F
+sudo apt install iptables-persistent -y
+sudo netfilter-persistent save
+sudo systemctl disable ufw
+
 
 # Docker 및 Docker Compose 버전 확인
 docker --version
